@@ -1,0 +1,93 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Cost Predictor</title>
+
+    <!-- Add Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Medical Cost Predictor</h1>
+
+        <form action="/predict" method="post" class="mb-5">
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" class="form-control" name="age" required>
+            </div>
+
+            <div class="form-group">
+                <label for="sex">Sex:</label>
+                <select name="sex" class="form-control" required>
+                    <option value="0">Female</option>
+                    <option value="1">Male</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="bmi">BMI:</label>
+                <input type="number" class="form-control" name="bmi" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="children">Number of Children:</label>
+                <input type="number" class="form-control" name="children" required>
+            </div>
+
+            <div class="form-group">
+                <label for="smoker">Smoker:</label>
+                <select name="smoker" class="form-control" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="region">Region:</label>
+                <select name="region" class="form-control" required>
+                    <option value="0">Southwest</option>
+                    <option value="1">Southeast</option>
+                    <option value="2">Northwest</option>
+                    <option value="3">Northeast</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+
+        {% if prediction %}
+            <div class="text-center">
+                <h2>Predicted Medical Cost:</h2>
+                <p class="lead">{{ prediction }}</p>
+            </div>
+
+            <div class="mt-5">
+                <h2 class="text-center">Visualizations:</h2>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 class="text-center">Age vs Charges:</h3>
+                        <img src="{{ url_for('static', filename='age_vs_charges.png') }}" class="img-fluid" alt="Age vs Charges Scatter Plot">
+                    </div>
+
+                    <div class="col-md-6">
+                        <h3 class="text-center">Pairplot:</h3>
+                        <img src="{{ url_for('static', filename='pairplot.png') }}" class="img-fluid" alt="Pairplot Image">
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Add Bootstrap JS and Popper.js (for Bootstrap features) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
