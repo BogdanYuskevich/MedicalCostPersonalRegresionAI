@@ -10,3 +10,5 @@ region: the beneficiary's residential area in the US, northeast, southeast, sout
 charges: Individual medical costs billed by health insurance
 
 Kaggle: https://www.kaggle.com/datasets/mirichoi0218/insurance
+
+![Medical Cost Predictor](prints/Medical%20Cost%20Predictor-1.png)
